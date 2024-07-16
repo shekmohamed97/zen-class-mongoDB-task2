@@ -1,0 +1,300 @@
+1.User:
+
+db.users.find()
+{
+  _id: ObjectId('6694ff21d2a21a594199ef9c'),
+  name: 'abulhasan',
+  email: 'abul@example.com',
+  phone: '987-654-3210',
+  join_date: 2023-01-10T00:00:00.000Z
+},
+{
+  _id: ObjectId('6694fe3dd2a21a594199ef97'),
+  name: 'John Doe',
+  email: 'john@example.com',
+  phone: '123-456-7890',
+  join_date: 2023-01-15T00:00:00.000Z
+},
+{
+  _id: ObjectId('6694fe3dd2a21a594199ef98'),
+  name: 'Jane Smith',
+  email: 'jane@example.com',
+  phone: '987-654-3210',
+  join_date: 2023-02-20T00:00:00.000Z
+},
+{
+  _id: ObjectId('6694fee4d2a21a594199ef99'),
+  name: 'Shek mohamed',
+  email: 'shek@example.com',
+  phone: '123-456-7890',
+  join_date: 2023-03-23T00:00:00.000Z
+},
+{
+  _id: ObjectId('6694fee4d2a21a594199ef9a'),
+  name: 'Salmon',
+  email: 'salmon@example.com',
+  phone: '987-654-3210',
+  join_date: 2023-03-22T00:00:00.000Z
+},
+{
+  _id: ObjectId('6694ff21d2a21a594199ef9b'),
+  name: 'Sulaimon',
+  email: 'sulaimon@example.com',
+  phone: '123-456-7890',
+  join_date: 2023-02-24T00:00:00.000Z
+}
+
+2.topics:
+
+db.topics.find()
+
+{
+  _id: ObjectId('669501d5d2a21a594199ef9d'),
+  name: 'MongoDB Basics',
+  description: 'Introduction to MongoDB',
+  date_taught: 2023-10-05T00:00:00.000Z
+},
+{
+  _id: ObjectId('669501d5d2a21a594199ef9e'),
+  name: 'Advanced MongoDB',
+  description: 'Deep dive into MongoDB features',
+  date_taught: 2023-10-15T00:00:00.000Z
+},
+{
+  _id: ObjectId('669502a1d2a21a594199ef9f'),
+  name: 'Javascript Basics',
+  description: 'Introduction to Javascript',
+  date_taught: 2023-10-06T00:00:00.000Z
+},
+{
+  _id: ObjectId('669502a1d2a21a594199efa0'),
+  name: 'Advanced Javascript',
+  description: 'Deep dive into Javascript features',
+  date_taught: 2023-10-16T00:00:00.000Z
+},
+{
+  _id: ObjectId('669502a1d2a21a594199efa1'),
+  name: 'React Basics',
+  description: 'Introduction to react',
+  date_taught: 2023-10-07T00:00:00.000Z
+},
+{
+  _id: ObjectId('669502a1d2a21a594199efa2'),
+  name: 'Advanced React',
+  description: 'Deep dive into React features',
+  date_taught: 2023-10-17T00:00:00.000Z
+}
+
+3.codekata:
+
+db.codekata.insertMany([
+  { _id: ObjectId(), user_id: ObjectId("user_id1"), problems_solved: 10, date_solved: ISODate("2023-07-01") },
+  { _id: ObjectId(), user_id: ObjectId("user_id1"), problems_solved: 20, date_solved: ISODate("2023-07-02") },
+  { _id: ObjectId(), user_id: ObjectId("user_id2"), problems_solved: 30, date_solved: ISODate("2023-07-01") },
+  { _id: ObjectId(), user_id: ObjectId("user_id2"), problems_solved: 20, date_solved: ISODate("2023-07-02") }
+]);
+
+
+db.codekata.find()
+
+{
+  _id: ObjectId('669507a3d2a21a594199efa6'),
+  user_id: ObjectId('6694ff21d2a21a594199ef9c'),
+  problems_solved: 20,
+  date_solved: 2023-07-02T00:00:00.000Z
+},
+{
+  _id: ObjectId('669507a3d2a21a594199efa5'),
+  user_id: ObjectId('6694fe3dd2a21a594199ef97'),
+  problems_solved: 30,
+  date_solved: 2023-07-01T00:00:00.000Z
+},
+{
+  _id: ObjectId('669507a3d2a21a594199efa4'),
+  user_id: ObjectId('6694fe3dd2a21a594199ef98'),
+  problems_solved: 20,
+  date_solved: 2023-07-02T00:00:00.000Z
+},
+{
+  _id: ObjectId('669507a3d2a21a594199efa3'),
+  user_id: ObjectId('6694fee4d2a21a594199ef99'),
+  problems_solved: 10,
+  date_solved: 2023-07-01T00:00:00.000Z
+}
+
+
+4.attendance:
+
+db.attendance.insertMany([
+  { _id: ObjectId(), user_id: ObjectId('user_id1"), date: ISODate("2023-10-15"), status: "Present" },
+  { _id: ObjectId(), user_id: ObjectId("user_id2"), date: ISODate("2023-10-15"), status: "Absent" },
+  { _id: ObjectId(), user_id: ObjectId("user_id1"), date: ISODate("2023-10-16"), status: "Present" },
+  { _id: ObjectId(), user_id: ObjectId("user_id2"), date: ISODate("2023-10-16"), status: "Present" },
+  { _id: ObjectId(), user_id: ObjectId("user_id1"), date: ISODate("2023-10-17"), status: "Absent" },
+  { _id: ObjectId(), user_id: ObjectId("user_id2"), date: ISODate("2023-10-17"), status: "Present" }
+]);
+
+db.attendance.find()
+
+{
+  _id: ObjectId('66950c66d2a21a594199efac'),
+  user_id: ObjectId('6694ff21d2a21a594199ef9b'),
+  date: 2023-10-17T00:00:00.000Z,
+  status: 'Present'
+},
+{
+  _id: ObjectId('66950c66d2a21a594199efab'),
+  user_id: ObjectId('6694fee4d2a21a594199ef9a'),
+  date: 2023-10-17T00:00:00.000Z,
+  status: 'Absent'
+},
+{
+  _id: ObjectId('66950c66d2a21a594199efaa'),
+  user_id: ObjectId('6694fee4d2a21a594199ef99'),
+  date: 2023-10-16T00:00:00.000Z,
+  status: 'Present'
+},
+{
+  _id: ObjectId('66950c66d2a21a594199efa9'),
+  user_id: ObjectId('6694fe3dd2a21a594199ef98'),
+  date: 2023-10-16T00:00:00.000Z,
+  status: 'Present'
+},
+{
+  _id: ObjectId('66950c66d2a21a594199efa8'),
+  user_id: ObjectId('6694fe3dd2a21a594199ef97'),
+  date: 2023-10-15T00:00:00.000Z,
+  status: 'Absent'
+},
+{
+  _id: ObjectId('66950c66d2a21a594199efa7'),
+  user_id: ObjectId('6694ff21d2a21a594199ef9c'),
+  date: 2023-10-15T00:00:00.000Z,
+  status: 'Present'
+}
+
+5.tasks
+
+db.tasks.insertMany([
+  { _id: ObjectId(), topic_id: ObjectId("topic_id1"), user_id: ObjectId("user_id1"), status: "Submitted", due_date: ISODate("2023-10-15") },
+  { _id: ObjectId(), topic_id: ObjectId("topic_id2"), user_id: ObjectId("user_id1"), status: "Not Submitted", due_date: ISODate("2023-10-20") },
+  { _id: ObjectId(), topic_id: ObjectId("topic_id1"), user_id: ObjectId("user_id2"), status: "Submitted", due_date: ISODate("2023-10-15") },
+  { _id: ObjectId(), topic_id: ObjectId("topic_id2"), user_id: ObjectId("user_id2"), status: "Not Submitted", due_date: ISODate("2023-10-20") }
+]);
+
+db.tasks.find()
+
+{
+  _id: ObjectId('66951243d2a21a594199efb2'),
+  topic_id: ObjectId('669501d5d2a21a594199ef9d'),
+  user_id: ObjectId('6694ff21d2a21a594199ef9b'),
+  status: 'Submitted',
+  due_date: 2023-10-15T00:00:00.000Z
+},
+{
+  _id: ObjectId('66951243d2a21a594199efb3'),
+  topic_id: ObjectId('669501d5d2a21a594199ef9e'),
+  user_id: ObjectId('6694fee4d2a21a594199ef9a'),
+  status: 'Not Submitted',
+  due_date: 2023-10-20T00:00:00.000Z
+},
+{
+  _id: ObjectId('66951243d2a21a594199efb4'),
+  topic_id: ObjectId('669502a1d2a21a594199ef9f'),
+  user_id: ObjectId('6694fee4d2a21a594199ef99'),
+  status: 'Submitted',
+  due_date: 2023-10-15T00:00:00.000Z
+},
+{
+  _id: ObjectId('66951243d2a21a594199efb5'),
+  topic_id: ObjectId('669502a1d2a21a594199efa0'),
+  user_id: ObjectId('6694fe3dd2a21a594199ef98'),
+  status: 'Not Submitted',
+  due_date: 2023-10-20T00:00:00.000Z
+},
+{
+  _id: ObjectId('66951243d2a21a594199efb6'),
+  topic_id: ObjectId('669502a1d2a21a594199efa1'),
+  user_id: ObjectId('6694fe3dd2a21a594199ef97'),
+  status: 'Submitted',
+  due_date: 2023-10-15T00:00:00.000Z
+},
+{
+  _id: ObjectId('66951243d2a21a594199efb7'),
+  topic_id: ObjectId('669502a1d2a21a594199efa2'),
+  user_id: ObjectId('6694ff21d2a21a594199ef9c'),
+  status: 'Not Submitted',
+  due_date: 2023-10-20T00:00:00.000Z
+}
+6.companys:
+
+db.company_drives.insertMany([
+  { _id: ObjectId(), company_name: "Company A", drive_date: ISODate("2023-10-15"), students: [ObjectId("user_id1"), ObjectId("user_id2")] },
+  { _id: ObjectId(), company_name: "Company B", drive_date: ISODate("2023-10-20"), students: [ObjectId("user_id3"), ObjectId("user_id4")] },
+  { _id: ObjectId(), company_name: "Company C", drive_date: ISODate("2023-10-25"), students: [ObjectId("user_id1"), ObjectId("user_id3")] },
+  { _id: ObjectId(), company_name: "Company D", drive_date: ISODate("2023-10-30"), students: [ObjectId("user_id2"), ObjectId("user_id4")] }
+]);
+
+db.company_drives.finc()
+
+{
+  _id: ObjectId('6695152cd2a21a594199efb8'),
+  company_name: 'Company A',
+  drive_date: 2023-10-15T00:00:00.000Z,
+  students: [
+    ObjectId('6694ff21d2a21a594199ef9c'),
+    ObjectId('6694fe3dd2a21a594199ef97')
+  ]
+},
+{
+  _id: ObjectId('6695152cd2a21a594199efb9'),
+  company_name: 'Company B',
+  drive_date: 2023-10-20T00:00:00.000Z,
+  students: [
+    ObjectId('6694fe3dd2a21a594199ef98'),
+    ObjectId('6694fee4d2a21a594199ef99')
+  ]
+},
+{
+  _id: ObjectId('6695152cd2a21a594199efba'),
+  company_name: 'Company C',
+  drive_date: 2023-10-25T00:00:00.000Z,
+  students: [
+    ObjectId('6694fee4d2a21a594199ef9a'),
+    ObjectId('6694ff21d2a21a594199ef9b')
+  ]
+}
+
+7.mentors:
+
+db.mentors.insertMany([
+  { _id: ObjectId(), name: "Mentor A", mentees: [ObjectId("user_id1"), ObjectId("user_id2"), ObjectId("user_id3")] },
+  { _id: ObjectId(), name: "Mentor B", mentees: [ObjectId("user_id4"), ObjectId("user_id5")] },
+  { _id: ObjectId(), name: "Mentor C", mentees: ObjectId("user_id6")}
+  
+]);
+
+db.mentors.find()
+
+{
+  _id: ObjectId('66951819d2a21a594199efbb'),
+  name: 'Mentor A',
+  mentees: [
+    ObjectId('6694ff21d2a21a594199ef9c'),
+    ObjectId('6694fe3dd2a21a594199ef97'),
+    ObjectId('6694fe3dd2a21a594199ef98')
+  ]
+},
+{
+  _id: ObjectId('66951819d2a21a594199efbc'),
+  name: 'Mentor B',
+  mentees: [
+    ObjectId('6694fee4d2a21a594199ef99'),
+    ObjectId('6694fee4d2a21a594199ef9a')
+  ]
+},
+{
+  _id: ObjectId('66951819d2a21a594199efbd'),
+  name: 'Mentor C',
+  mentees: ObjectId('6694ff21d2a21a594199ef9b')
+}

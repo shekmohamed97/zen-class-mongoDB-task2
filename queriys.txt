@@ -1,0 +1,332 @@
+1.Find all the topics and tasks which are thought in the month of October:
+
+db.topics.aggregate([
+  {
+    $match: {
+      $expr: {
+        $eq: [{ $month: "$date_taught" }, 10]
+      }
+    }
+  },
+  {
+    $lookup: {
+      from: "tasks",
+      localField: "_id",
+      foreignField: "topic_id",
+      as: "tasks"
+    }
+  }
+]);
+
+{
+  _id: ObjectId('669501d5d2a21a594199ef9d'),
+  name: 'MongoDB Basics',
+  description: 'Introduction to MongoDB',
+  date_taught: 2023-10-05T00:00:00.000Z,
+  tasks: [
+    {
+      _id: ObjectId('66951243d2a21a594199efb2'),
+      topic_id: ObjectId('669501d5d2a21a594199ef9d'),
+      user_id: ObjectId('6694ff21d2a21a594199ef9b'),
+      status: 'Submitted',
+      due_date: 2023-10-15T00:00:00.000Z
+    }
+  ]
+},
+{
+  _id: ObjectId('669501d5d2a21a594199ef9e'),
+  name: 'Advanced MongoDB',
+  description: 'Deep dive into MongoDB features',
+  date_taught: 2023-10-15T00:00:00.000Z,
+  tasks: [
+    {
+      _id: ObjectId('66951243d2a21a594199efb3'),
+      topic_id: ObjectId('669501d5d2a21a594199ef9e'),
+      user_id: ObjectId('6694fee4d2a21a594199ef9a'),
+      status: 'Not Submitted',
+      due_date: 2023-10-20T00:00:00.000Z
+    }
+  ]
+},
+{
+  _id: ObjectId('669502a1d2a21a594199ef9f'),
+  name: 'Javascript Basics',
+  description: 'Introduction to Javascript',
+  date_taught: 2023-10-06T00:00:00.000Z,
+  tasks: [
+    {
+      _id: ObjectId('66951243d2a21a594199efb4'),
+      topic_id: ObjectId('669502a1d2a21a594199ef9f'),
+      user_id: ObjectId('6694fee4d2a21a594199ef99'),
+      status: 'Submitted',
+      due_date: 2023-10-15T00:00:00.000Z
+    }
+  ]
+},
+{
+  _id: ObjectId('669502a1d2a21a594199efa0'),
+  name: 'Advanced Javascript',
+  description: 'Deep dive into Javascript features',
+  date_taught: 2023-10-16T00:00:00.000Z,
+  tasks: [
+    {
+      _id: ObjectId('66951243d2a21a594199efb5'),
+      topic_id: ObjectId('669502a1d2a21a594199efa0'),
+      user_id: ObjectId('6694fe3dd2a21a594199ef98'),
+      status: 'Not Submitted',
+      due_date: 2023-10-20T00:00:00.000Z
+    }
+  ]
+},
+{
+  _id: ObjectId('669502a1d2a21a594199efa1'),
+  name: 'React Basics',
+  description: 'Introduction to react',
+  date_taught: 2023-10-07T00:00:00.000Z,
+  tasks: [
+    {
+      _id: ObjectId('66951243d2a21a594199efb6'),
+      topic_id: ObjectId('669502a1d2a21a594199efa1'),
+      user_id: ObjectId('6694fe3dd2a21a594199ef97'),
+      status: 'Submitted',
+      due_date: 2023-10-15T00:00:00.000Z
+    }
+  ]
+},
+{
+  _id: ObjectId('669502a1d2a21a594199efa2'),
+  name: 'Advanced React',
+  description: 'Deep dive into React features',
+  date_taught: 2023-10-17T00:00:00.000Z,
+  tasks: [
+    {
+      _id: ObjectId('66951243d2a21a594199efb7'),
+      topic_id: ObjectId('669502a1d2a21a594199efa2'),
+      user_id: ObjectId('6694ff21d2a21a594199ef9c'),
+      status: 'Not Submitted',
+      due_date: 2023-10-20T00:00:00.000Z
+    }
+  ]
+}
+
+2.Find all the company drives which appeared between 15 oct-2020 and 31-oct-2020:
+
+db.company_drives.find({
+  drive_date: { $gte: ISODate("2020-10-15"), $lte: ISODate("2020-10-31") }
+});
+
+{
+  _id: ObjectId('669520bad2a21a594199efbe'),
+  company_name: 'Company A',
+  drive_date: 2020-10-15T00:00:00.000Z,
+  students: [
+    ObjectId('6694ff21d2a21a594199ef9c'),
+    ObjectId('6694fe3dd2a21a594199ef97')
+  ]
+},
+{
+  _id: ObjectId('669520bad2a21a594199efbf'),
+  company_name: 'Company B',
+  drive_date: 2020-10-20T00:00:00.000Z,
+  students: [
+    ObjectId('6694fe3dd2a21a594199ef98'),
+    ObjectId('6694fee4d2a21a594199ef99')
+  ]
+},
+{
+  _id: ObjectId('669520bad2a21a594199efc0'),
+  company_name: 'Company C',
+  drive_date: 2020-10-25T00:00:00.000Z,
+  students: [
+    ObjectId('6694fee4d2a21a594199ef9a'),
+    ObjectId('6694ff21d2a21a594199ef9b')
+  ]
+}
+
+3.Find all the company drives and students who are appeared for the placement.
+
+db.company_drives.find({}, { company_name: 1, drive_date: 1, students: 1 }).pretty();
+
+{
+  _id: ObjectId('6695152cd2a21a594199efb8'),
+  company_name: 'Company A',
+  drive_date: 2023-10-15T00:00:00.000Z,
+  students: [
+    ObjectId('6694ff21d2a21a594199ef9c'),
+    ObjectId('6694fe3dd2a21a594199ef97')
+  ]
+},
+{
+  _id: ObjectId('6695152cd2a21a594199efb9'),
+  company_name: 'Company B',
+  drive_date: 2023-10-20T00:00:00.000Z,
+  students: [
+    ObjectId('6694fe3dd2a21a594199ef98'),
+    ObjectId('6694fee4d2a21a594199ef99')
+  ]
+},
+{
+  _id: ObjectId('6695152cd2a21a594199efba'),
+  company_name: 'Company C',
+  drive_date: 2023-10-25T00:00:00.000Z,
+  students: [
+    ObjectId('6694fee4d2a21a594199ef9a'),
+    ObjectId('6694ff21d2a21a594199ef9b')
+  ]
+},
+{
+  _id: ObjectId('669520bad2a21a594199efbe'),
+  company_name: 'Company A',
+  drive_date: 2020-10-15T00:00:00.000Z,
+  students: [
+    ObjectId('6694ff21d2a21a594199ef9c'),
+    ObjectId('6694fe3dd2a21a594199ef97')
+  ]
+},
+{
+  _id: ObjectId('669520bad2a21a594199efbf'),
+  company_name: 'Company B',
+  drive_date: 2020-10-20T00:00:00.000Z,
+  students: [
+    ObjectId('6694fe3dd2a21a594199ef98'),
+    ObjectId('6694fee4d2a21a594199ef99')
+  ]
+},
+{
+  _id: ObjectId('669520bad2a21a594199efc0'),
+  company_name: 'Company C',
+  drive_date: 2020-10-25T00:00:00.000Z,
+  students: [
+    ObjectId('6694fee4d2a21a594199ef9a'),
+    ObjectId('6694ff21d2a21a594199ef9b')
+  ]
+}
+
+4.Find the number of problems solved by the user in codekata:
+
+db.codekata.aggregate([
+  {
+    $group: {
+      _id: "$user_id",
+      total_problems_solved: { $sum: "$problems_solved" }
+    }
+  },
+  {
+    $lookup: {
+      from: "users",
+      localField: "_id",
+      foreignField: "_id",
+      as: "user"
+    }
+  },
+  {
+    $unwind: "$user"
+  },
+  {
+    $project: {
+      "user.name": 1,
+      total_problems_solved: 1
+    }
+  }
+]);
+
+
+{
+  _id: ObjectId('6694fee4d2a21a594199ef99'),
+  total_problems_solved: 10,
+  user: {
+    name: 'Shek mohamed'
+  }
+},
+{
+  _id: ObjectId('6694fe3dd2a21a594199ef98'),
+  total_problems_solved: 20,
+  user: {
+    name: 'Jane Smith'
+  }
+},
+{
+  _id: ObjectId('6694fe3dd2a21a594199ef97'),
+  total_problems_solved: 30,
+  user: {
+    name: 'John Doe'
+  }
+},
+{
+  _id: ObjectId('6694ff21d2a21a594199ef9c'),
+  total_problems_solved: 20,
+  user: {
+    name: 'abulhasan'
+  }
+}
+
+5.Find all the mentors with who has the mentee's count more than 15:
+
+db.mentor_mentees.aggregate([
+  {
+    $group: {
+      _id: "$mentor_id",
+      mentee_count: { $sum: 1 }
+    }
+  },
+  {
+    $match: {
+      mentee_count: { $gt: 15 }
+    }
+  },
+  {
+    $lookup: {
+      from: "mentors",
+      localField: "_id",
+      foreignField: "_id",
+      as: "mentor"
+    }
+  },
+  {
+    $unwind: "$mentor"
+  },
+  {
+    $project: {
+      "mentor.name": 1,
+      mentee_count: 1
+    }
+  }
+]);
+
+6.Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020:
+
+db.attendance.aggregate([
+  {
+    $match: {
+      status: "Absent",
+      date: { $gte: ISODate("2020-10-15"), $lte: ISODate("2020-10-31") }
+    }
+  },
+  {
+    $lookup: {
+      from: "tasks",
+      localField: "user_id",
+      foreignField: "user_id",
+      as: "tasks"
+    }
+  },
+  {
+    $unwind: "$tasks"
+  },
+  {
+    $match: {
+      "tasks.status": "Not Submitted",
+      "tasks.due_date": { $gte: ISODate("2020-10-15"), $lte: ISODate("2020-10-31") }
+    }
+  },
+  {
+    $group: {
+      _id: "$user_id"
+    }
+  },
+  {
+    $count: "user_count"
+  }
+]);
+
+
